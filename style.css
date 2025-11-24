@@ -6,9 +6,9 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 20s ease infinite;
+    background: radial-gradient(ellipse at top, #ff6b9d 0%, #c06c84 30%, #764ba2 60%, #355c7d 100%);
+    background-size: 100% 100%;
+    animation: breathe 8s ease-in-out infinite;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -18,10 +18,13 @@ body {
     position: relative;
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+@keyframes breathe {
+    0%, 100% {
+        background: radial-gradient(ellipse at top, #ff6b9d 0%, #c06c84 30%, #764ba2 60%, #355c7d 100%);
+    }
+    50% {
+        background: radial-gradient(ellipse at bottom, #f093fb 0%, #764ba2 30%, #667eea 60%, #355c7d 100%);
+    }
 }
 
 /* Floating hearts background */
@@ -36,351 +39,509 @@ body {
 
 .heart {
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 182, 193, 0.4);
     transform: rotate(45deg);
-    animation: floatHearts 20s infinite;
+    animation: floatHearts 15s infinite;
     opacity: 0;
+    filter: blur(1px);
 }
 
 .heart::before,
 .heart::after {
     content: '';
     position: absolute;
-    width: 15px;
-    height: 15px;
-    background: rgba(255, 255, 255, 0.15);
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 182, 193, 0.4);
     border-radius: 50%;
 }
 
 .heart::before {
-    left: -8px;
+    left: -10px;
 }
 
 .heart::after {
-    top: -8px;
+    top: -10px;
 }
 
 .heart:nth-child(1) {
-    left: 15%;
+    left: 10%;
     animation-delay: 0s;
-    animation-duration: 18s;
+    animation-duration: 14s;
 }
 
 .heart:nth-child(2) {
-    left: 40%;
-    animation-delay: 5s;
-    animation-duration: 22s;
+    left: 35%;
+    animation-delay: 3s;
+    animation-duration: 16s;
 }
 
 .heart:nth-child(3) {
-    left: 65%;
-    animation-delay: 10s;
-    animation-duration: 20s;
+    left: 60%;
+    animation-delay: 6s;
+    animation-duration: 13s;
 }
 
 .heart:nth-child(4) {
     left: 85%;
-    animation-delay: 15s;
-    animation-duration: 24s;
+    animation-delay: 9s;
+    animation-duration: 15s;
 }
 
 @keyframes floatHearts {
     0% {
-        bottom: -50px;
+        bottom: -60px;
         opacity: 0;
-        transform: translateX(0) rotate(45deg) scale(0.4);
+        transform: translateX(0) rotate(45deg) scale(0.3);
     }
-    10% {
-        opacity: 0.4;
+    15% {
+        opacity: 0.8;
     }
-    90% {
-        opacity: 0.2;
+    85% {
+        opacity: 0.6;
     }
     100% {
         bottom: 110vh;
         opacity: 0;
-        transform: translateX(50px) rotate(45deg) scale(0.6);
+        transform: translateX(80px) rotate(45deg) scale(0.8);
     }
 }
 
 .container {
     text-align: center;
-    padding: 4rem 3rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-    max-width: 1000px;
-    width: 92%;
+    padding: 2rem;
+    max-width: 100%;
+    width: 100%;
     position: relative;
     z-index: 1;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .header-content {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    animation: slideDown 1.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .love-icon {
-    font-size: 4.5rem;
-    animation: heartbeat 2s ease-in-out infinite;
-    margin-bottom: 1.5rem;
+    font-size: 6rem;
+    animation: heartPulse 1.5s ease-in-out infinite, float 3s ease-in-out infinite;
+    margin-bottom: 2rem;
     display: inline-block;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.6));
 }
 
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    14% { transform: scale(1.08); }
-    28% { transform: scale(1); }
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    10% { transform: scale(1.1) rotate(-5deg); }
+    20% { transform: scale(1) rotate(0deg); }
+    30% { transform: scale(1.15) rotate(5deg); }
+    40% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
 }
 
 .main-title {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: #ffffff;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(45deg, #fff, #ffb6c1, #ffc0cb, #fff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerText 4s ease-in-out infinite;
     line-height: 1.2;
+    text-shadow: 0 4px 30px rgba(255, 182, 193, 0.5);
+}
+
+@keyframes shimmerText {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 .subtitle {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-style: italic;
-    margin-bottom: 2rem;
-    opacity: 0.92;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
     font-weight: 300;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    animation: fadeIn 1.5s ease-out 0.5s both;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.95; }
 }
 
 .meeting-details {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 2rem;
     flex-wrap: wrap;
-    font-size: 1rem;
-    margin-top: 1rem;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    animation: fadeIn 1.8s ease-out 0.8s both;
 }
 
 .location, .date {
-    background: rgba(255, 255, 255, 0.12);
-    padding: 0.7rem 1.8rem;
-    border-radius: 30px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-weight: 500;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    animation: popIn 0.6s ease-out both;
+}
+
+.location {
+    animation-delay: 1s;
+}
+
+.date {
+    animation-delay: 1.2s;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.location:hover, .date:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .quote {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-style: italic;
-    margin: 2.5rem auto;
+    margin: 3rem auto;
     padding: 0;
-    max-width: 600px;
-    opacity: 0.88;
+    max-width: 700px;
+    opacity: 0.9;
     font-weight: 300;
-    line-height: 1.6;
-    letter-spacing: 0.3px;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+    animation: fadeIn 2s ease-out 1.5s both, glow 4s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
+}
+
+@keyframes glow {
+    0%, 100% {
+        text-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 182, 193, 0.6);
+    }
 }
 
 .countdown {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem;
     flex-wrap: wrap;
-    margin: 3.5rem 0;
+    margin: 4rem 0;
+    animation: scaleIn 1s ease-out 2s both;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .time-box {
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 24px;
-    padding: 2.5rem 3rem;
-    min-width: 140px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border-radius: 0;
+    padding: 2rem 2.5rem;
+    min-width: 150px;
+    backdrop-filter: none;
+    border: none;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.4);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: visible;
+    animation: slideUp 0.8s ease-out both;
+}
+
+.time-box:nth-child(1) { animation-delay: 2.2s; }
+.time-box:nth-child(2) { animation-delay: 2.4s; }
+.time-box:nth-child(3) { animation-delay: 2.6s; }
+.time-box:nth-child(4) { animation-delay: 2.8s; }
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .time-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-10px) scale(1.05);
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+.time-box::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b9d, #ffc0cb);
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.time-box:hover::before {
+    width: 100%;
 }
 
 .time {
     display: block;
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 5rem;
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 4px 20px rgba(255, 182, 193, 0.5);
     position: relative;
     z-index: 1;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff 0%, #ffb6c1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .label {
     display: block;
-    font-size: 0.95rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0.85;
+    letter-spacing: 3px;
+    opacity: 0.8;
     font-weight: 600;
     position: relative;
     z-index: 1;
 }
 
 .message {
-    font-size: 1.5rem;
-    margin-top: 3rem;
+    font-size: 1.8rem;
+    margin-top: 4rem;
     font-weight: 600;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 25px rgba(255, 182, 193, 0.6);
     min-height: 2rem;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
 }
 
 .love-notes {
-    margin-top: 4rem;
-    padding-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    max-width: 700px;
+    margin-top: 5rem;
+    padding-top: 0;
+    border-top: none;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    animation: fadeIn 2.5s ease-out 3s both;
 }
 
 .love-note {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-style: italic;
-    margin: 1.2rem 0;
-    opacity: 0.82;
-    line-height: 1.7;
+    margin: 1.5rem 0;
+    opacity: 0.85;
+    line-height: 1.8;
     font-weight: 300;
-    letter-spacing: 0.2px;
-    transition: opacity 0.5s ease;
+    letter-spacing: 0.3px;
+    transition: all 0.6s ease;
+    text-shadow: 0 2px 15px rgba(255, 182, 193, 0.3);
+}
+
+.love-note:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    text-shadow: 0 4px 25px rgba(255, 182, 193, 0.5);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .container {
-        padding: 3rem 2rem;
+    .love-icon {
+        font-size: 4.5rem;
     }
 
     .main-title {
-        font-size: 2.5rem;
-    }
-
-    .subtitle {
-        font-size: 1.2rem;
-    }
-
-    .meeting-details {
-        gap: 1rem;
-        font-size: 0.95rem;
-    }
-
-    .quote {
-        font-size: 1.15rem;
-    }
-
-    .time-box {
-        min-width: 110px;
-        padding: 2rem 2rem;
-    }
-
-    .time {
         font-size: 3rem;
     }
 
-    .label {
-        font-size: 0.85rem;
-        letter-spacing: 1.5px;
+    .subtitle {
+        font-size: 1.3rem;
+    }
+
+    .meeting-details {
+        gap: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .quote {
+        font-size: 1.25rem;
+        margin: 2.5rem auto;
     }
 
     .countdown {
-        gap: 1.5rem;
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .time-box {
+        min-width: 120px;
+        padding: 1.5rem 2rem;
+    }
+
+    .time {
+        font-size: 4rem;
+    }
+
+    .label {
+        font-size: 0.9rem;
+        letter-spacing: 2.5px;
+    }
+
+    .message {
+        font-size: 1.5rem;
     }
 
     .love-note {
-        font-size: 1.05rem;
-    }
-
-    .love-icon {
-        font-size: 3.5rem;
+        font-size: 1.15rem;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 2.5rem 1.5rem;
-        width: 95%;
+        padding: 1.5rem 1rem;
     }
 
     .header-content {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
     }
 
     .love-icon {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
     }
 
     .main-title {
-        font-size: 2rem;
-        letter-spacing: -0.3px;
+        font-size: 2.2rem;
+        letter-spacing: -0.5px;
     }
 
     .subtitle {
-        font-size: 1.05rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
     }
 
     .meeting-details {
         flex-direction: column;
-        gap: 0.8rem;
+        gap: 1rem;
+    }
+
+    .location, .date {
+        padding: 0.7rem 1.5rem;
     }
 
     .quote {
-        font-size: 1.05rem;
+        font-size: 1.1rem;
         margin: 2rem auto;
     }
 
-    .time-box {
-        min-width: 80px;
-        padding: 1.5rem 1.5rem;
-    }
-
-    .time {
-        font-size: 2.5rem;
-    }
-
-    .label {
-        font-size: 0.75rem;
-    }
-
     .countdown {
-        gap: 1rem;
+        gap: 1.5rem;
         margin: 2.5rem 0;
     }
 
+    .time-box {
+        min-width: 90px;
+        padding: 1.2rem 1.5rem;
+    }
+
+    .time {
+        font-size: 3rem;
+        letter-spacing: -1px;
+    }
+
+    .label {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
     .message {
-        font-size: 1.2rem;
-        margin-top: 2rem;
+        font-size: 1.3rem;
+        margin-top: 3rem;
     }
 
     .love-notes {
-        margin-top: 3rem;
-        padding-top: 2rem;
+        margin-top: 4rem;
     }
 
     .love-note {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 }
