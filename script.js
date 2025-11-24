@@ -4,13 +4,13 @@ const targetDate = new Date('2025-12-17T23:45:00+03:00');
 
 // Romantic messages that rotate
 const loveMessages = [
-    "💕 Every moment apart makes our reunion even sweeter",
-    "💑 Two hearts, one love, counting down together",
-    "🌟 The stars are aligning for our special moment",
-    "💖 Distance is temporary, our love is forever",
-    "✨ Soon we'll be writing new chapters together",
-    "🌹 Love knows no distance, only the journey home",
-    "💝 Each tick brings us closer to endless embraces"
+    "Every moment apart makes our reunion even sweeter",
+    "Two hearts, one love, counting down together",
+    "The stars are aligning for our special moment",
+    "Distance is temporary, our love is forever",
+    "Soon we'll be writing new chapters together",
+    "Love knows no distance, only the journey home",
+    "Each tick brings us closer to endless embraces"
 ];
 
 let currentMessageIndex = 0;
@@ -26,7 +26,7 @@ function updateCountdown() {
         document.getElementById('hours').textContent = '0';
         document.getElementById('minutes').textContent = '0';
         document.getElementById('seconds').textContent = '0';
-        document.getElementById('message').textContent = '💕❤️ TOGETHER AT LAST! ❤️💕';
+        document.getElementById('message').textContent = 'Together at last ❤️';
 
         // Trigger celebration
         createCelebration();
@@ -70,17 +70,17 @@ function checkMilestones(days, hours, minutes) {
     const messageElement = document.getElementById('message');
 
     if (days === 0 && hours === 0 && minutes === 0) {
-        messageElement.textContent = '⏰ FINAL COUNTDOWN! Seconds away from reunion! ⏰';
+        messageElement.textContent = 'Final seconds... Almost there!';
     } else if (days === 0 && hours === 0) {
-        messageElement.textContent = '🎊 Less than an hour until we meet! 🎊';
+        messageElement.textContent = 'Less than an hour until we meet';
     } else if (days === 0) {
-        messageElement.textContent = '🎉 THE WAIT IS ALMOST OVER - Today is the day! 🎉';
+        messageElement.textContent = 'Today is the day! ✨';
     } else if (days === 1) {
-        messageElement.textContent = '💫 Just ONE more day until our hearts reunite! 💫';
+        messageElement.textContent = 'Just one more day until our hearts reunite';
     } else if (days === 7) {
-        messageElement.textContent = '📅 ONE WEEK LEFT! The countdown intensifies! 📅';
+        messageElement.textContent = 'One week remaining';
     } else if (days === 30) {
-        messageElement.textContent = '🌙 ONE MONTH to go! Time to start counting hours! 🌙';
+        messageElement.textContent = 'One month to go';
     }
 }
 
@@ -91,8 +91,8 @@ function rotateLoveMessage() {
         loveNotes[0].style.opacity = '0';
         setTimeout(() => {
             loveNotes[0].textContent = loveMessages[currentMessageIndex];
-            loveNotes[0].style.opacity = '0.9';
-        }, 500);
+            loveNotes[0].style.opacity = '0.82';
+        }, 400);
     }
 }
 
@@ -132,30 +132,14 @@ function createHeart() {
 
 // Add smooth transition to time elements
 document.querySelectorAll('.time').forEach(element => {
-    element.style.transition = 'transform 0.3s ease';
+    element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
 });
 
-// Rotate love messages every 8 seconds
-setInterval(rotateLoveMessage, 8000);
+// Rotate love messages every 10 seconds
+setInterval(rotateLoveMessage, 10000);
 
 // Update countdown immediately
 updateCountdown();
 
 // Update countdown every second
 setInterval(updateCountdown, 1000);
-
-// Add sparkle effect on hover
-document.querySelectorAll('.time-box').forEach(box => {
-    box.addEventListener('mouseenter', () => {
-        const sparkle = document.createElement('span');
-        sparkle.innerHTML = '✨';
-        sparkle.style.position = 'absolute';
-        sparkle.style.top = '10px';
-        sparkle.style.right = '10px';
-        sparkle.style.fontSize = '1.5rem';
-        sparkle.style.animation = 'fadeIn 0.5s ease';
-        box.appendChild(sparkle);
-
-        setTimeout(() => sparkle.remove(), 500);
-    });
-});
