@@ -156,7 +156,13 @@ body {
     width: 100%;
     height: auto;
     max-width: 280px;
-    clip-path: path('M140,20 C73,20 20,73 20,140 C20,207 73,260 140,290 C207,260 260,207 260,140 C260,73 207,20 140,20 Z');
+    clip-path: polygon(
+        50% 10%,
+        60% 5%, 70% 3%, 80% 5%, 87% 10%, 92% 17%, 95% 25%, 97% 35%, 97% 45%,
+        95% 55%, 92% 65%, 87% 73%, 80% 80%, 70% 87%, 60% 92%, 50% 100%,
+        40% 92%, 30% 87%, 20% 80%, 13% 73%, 8% 65%, 5% 55%, 3% 45%, 3% 35%,
+        5% 25%, 8% 17%, 13% 10%, 20% 5%, 30% 3%, 40% 5%
+    );
     filter: drop-shadow(0 15px 35px rgba(255, 107, 157, 0.7));
     animation: heartPulse 2s ease-in-out infinite, floatHeart 4s ease-in-out infinite;
     transition: all 0.5s ease;
