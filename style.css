@@ -253,6 +253,37 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+.couple-image-container {
+    margin: 3rem auto;
+    max-width: 400px;
+    animation: fadeIn 1.8s ease-out 1.2s both;
+}
+
+.couple-image {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    filter: drop-shadow(0 10px 30px rgba(255, 182, 193, 0.4));
+    animation: floatImage 4s ease-in-out infinite;
+    transition: all 0.5s ease;
+    opacity: 0.9;
+}
+
+.couple-image:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 15px 40px rgba(255, 182, 193, 0.6));
+    opacity: 1;
+}
+
+@keyframes floatImage {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
 .quote {
     font-size: 1.5rem;
     font-style: italic;
@@ -441,6 +472,15 @@ body {
         font-size: 1rem;
     }
 
+    .couple-image-container {
+        margin: 2.5rem auto;
+        max-width: 300px;
+    }
+
+    .couple-image {
+        max-width: 280px;
+    }
+
     .quote {
         font-size: 1.25rem;
         margin: 2.5rem auto;
@@ -505,6 +545,15 @@ body {
 
     .location, .date {
         padding: 0.7rem 1.5rem;
+    }
+
+    .couple-image-container {
+        margin: 2rem auto;
+        max-width: 250px;
+    }
+
+    .couple-image {
+        max-width: 230px;
     }
 
     .quote {
