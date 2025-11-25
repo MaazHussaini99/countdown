@@ -146,25 +146,36 @@ body {
     }
 }
 
-.love-icon {
-    font-size: 6rem;
-    animation: heartPulse 1.5s ease-in-out infinite, float 3s ease-in-out infinite;
-    margin-bottom: 2rem;
-    display: inline-block;
-    filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.6));
+.couple-heart-image {
+    margin: 0 auto 3rem;
+    max-width: 280px;
+    animation: fadeIn 1.2s ease-out 0.3s both;
+}
+
+.heart-shaped-image {
+    width: 100%;
+    height: auto;
+    max-width: 280px;
+    clip-path: path('M140,20 C73,20 20,73 20,140 C20,207 73,260 140,290 C207,260 260,207 260,140 C260,73 207,20 140,20 Z');
+    filter: drop-shadow(0 15px 35px rgba(255, 107, 157, 0.7));
+    animation: heartPulse 2s ease-in-out infinite, floatHeart 4s ease-in-out infinite;
+    transition: all 0.5s ease;
+}
+
+.heart-shaped-image:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 20px 45px rgba(255, 107, 157, 0.9));
 }
 
 @keyframes heartPulse {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    10% { transform: scale(1.1) rotate(-5deg); }
-    20% { transform: scale(1) rotate(0deg); }
-    30% { transform: scale(1.15) rotate(5deg); }
-    40% { transform: scale(1) rotate(0deg); }
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.05); }
+    28% { transform: scale(1); }
 }
 
-@keyframes float {
+@keyframes floatHeart {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-12px); }
 }
 
 .main-title {
@@ -251,37 +262,6 @@ body {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.couple-image-container {
-    margin: 3rem auto;
-    max-width: 400px;
-    animation: fadeIn 1.8s ease-out 1.2s both;
-}
-
-.couple-image {
-    width: 100%;
-    height: auto;
-    max-width: 350px;
-    filter: drop-shadow(0 10px 30px rgba(255, 182, 193, 0.4));
-    animation: floatImage 4s ease-in-out infinite;
-    transition: all 0.5s ease;
-    opacity: 0.9;
-}
-
-.couple-image:hover {
-    transform: scale(1.05);
-    filter: drop-shadow(0 15px 40px rgba(255, 182, 193, 0.6));
-    opacity: 1;
-}
-
-@keyframes floatImage {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-12px);
-    }
 }
 
 .quote {
@@ -455,8 +435,13 @@ body {
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .love-icon {
-        font-size: 4.5rem;
+    .couple-heart-image {
+        margin: 0 auto 2.5rem;
+        max-width: 220px;
+    }
+
+    .heart-shaped-image {
+        max-width: 220px;
     }
 
     .main-title {
@@ -470,15 +455,6 @@ body {
     .meeting-details {
         gap: 1.5rem;
         font-size: 1rem;
-    }
-
-    .couple-image-container {
-        margin: 2.5rem auto;
-        max-width: 300px;
-    }
-
-    .couple-image {
-        max-width: 280px;
     }
 
     .quote {
@@ -523,9 +499,13 @@ body {
         margin-bottom: 3rem;
     }
 
-    .love-icon {
-        font-size: 4rem;
-        margin-bottom: 1.5rem;
+    .couple-heart-image {
+        margin: 0 auto 2rem;
+        max-width: 180px;
+    }
+
+    .heart-shaped-image {
+        max-width: 180px;
     }
 
     .main-title {
@@ -545,15 +525,6 @@ body {
 
     .location, .date {
         padding: 0.7rem 1.5rem;
-    }
-
-    .couple-image-container {
-        margin: 2rem auto;
-        max-width: 250px;
-    }
-
-    .couple-image {
-        max-width: 230px;
     }
 
     .quote {
