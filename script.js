@@ -101,7 +101,7 @@ function createCelebration() {
     for (let i = 0; i < 50; i++) {
         setTimeout(() => {
             createHeart();
-        }, i * 100);
+        }, i * 10);
     }
 }
 
