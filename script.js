@@ -2,6 +2,10 @@
 // Qatar uses AST (Arabia Standard Time) which is UTC+3
 const targetDate = new Date('2025-12-17T23:45:00+03:00');
 
+// Flight times in Qatar Time (UTC+3)
+const myFlightDate = new Date('2025-12-16T16:55:00+03:00'); // Dec 16, 4:55 PM
+const herFlightDate = new Date('2025-12-17T22:10:00+03:00'); // Dec 17, 10:10 PM
+
 // Romantic messages that rotate
 const loveMessages = [
     "Every moment apart makes our reunion even sweeter",
@@ -64,6 +68,31 @@ function updateWithAnimation(elementId, value) {
             element.style.transform = 'scale(1)';
         }, 300);
     }
+}
+
+function updateFlightCountdown(flightDate, daysId, hoursId, minsId) {
+    const now = new Date();
+    const difference = flightDate - now;
+
+    if (difference <= 0) {
+        document.getElementById(daysId).textContent = '0';
+        document.getElementById(hoursId).textContent = '0';
+        document.getElementById(minsId).textContent = '0';
+        return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+    updateWithAnimation(daysId, days);
+    updateWithAnimation(hoursId, hours);
+    updateWithAnimation(minsId, minutes);
+}
+
+function updateFlightCountdowns() {
+    updateFlightCountdown(myFlightDate, 'my-days', 'my-hours', 'my-mins');
+    updateFlightCountdown(herFlightDate, 'her-days', 'her-hours', 'her-mins');
 }
 
 function checkMilestones(days, hours, minutes) {
@@ -135,11 +164,18 @@ document.querySelectorAll('.time').forEach(element => {
     element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
 });
 
+// Add smooth transition to mini time elements
+document.querySelectorAll('.mini-time').forEach(element => {
+    element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+});
+
 // Rotate love messages every 10 seconds
 setInterval(rotateLoveMessage, 10000);
 
 // Update countdown immediately
 updateCountdown();
+updateFlightCountdowns();
 
 // Update countdown every second
 setInterval(updateCountdown, 1000);
+setInterval(updateFlightCountdowns, 1000);
