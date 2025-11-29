@@ -2,9 +2,9 @@
 // Qatar uses AST (Arabia Standard Time) which is UTC+3
 const targetDate = new Date('2025-12-17T23:45:00+03:00');
 
-// Flight times in Qatar Time (UTC+3)
-const myFlightDate = new Date('2025-12-16T16:55:00+03:00'); // Dec 16, 4:55 PM
-const herFlightDate = new Date('2025-12-17T22:10:00+03:00'); // Dec 17, 10:10 PM
+// Flight times in their respective timezones
+const myFlightDate = new Date('2025-12-16T16:55:00-06:00'); // Dec 16, 4:55 PM Dallas time (CST, UTC-6)
+const herFlightDate = new Date('2025-12-17T22:10:00+05:30'); // Dec 17, 10:10 PM Mumbai time (IST, UTC+5:30)
 
 // Romantic messages that rotate
 const loveMessages = [
