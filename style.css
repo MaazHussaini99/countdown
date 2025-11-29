@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,6 +18,20 @@ body {
     color: white;
     overflow-x: hidden;
     position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    z-index: -1;
+    will-change: background-position;
 }
 
 @keyframes gradient {
@@ -48,7 +64,7 @@ body {
     transform: rotate(45deg);
     animation: floatHearts 15s infinite;
     opacity: 0;
-    filter: blur(1px);
+    will-change: transform, opacity;
 }
 
 .heart::before,
@@ -120,6 +136,7 @@ body {
     position: relative;
     z-index: 1;
     animation: fadeInUp 1s ease-out;
+    transform: translateZ(0);
 }
 
 @keyframes fadeInUp {
@@ -169,6 +186,7 @@ body {
     filter: drop-shadow(0 15px 35px rgba(255, 107, 157, 0.7));
     animation: heartPulse 2s ease-in-out infinite, floatHeart 4s ease-in-out infinite;
     transition: all 0.5s ease;
+    will-change: transform;
 }
 
 .heart-shaped-image:hover {
@@ -197,9 +215,10 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: shimmerText 4s ease-in-out infinite;
+    animation: shimmerText 6s ease-in-out infinite;
     line-height: 1.2;
     text-shadow: 0 4px 30px rgba(255, 182, 193, 0.5);
+    will-change: background-position;
 }
 
 @keyframes shimmerText {
@@ -234,10 +253,9 @@ body {
 }
 
 .location, .date {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.12);
     padding: 0.8rem 2rem;
     border-radius: 50px;
-    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -283,7 +301,7 @@ body {
     font-weight: 300;
     line-height: 1.7;
     letter-spacing: 0.5px;
-    animation: fadeIn 2s ease-out 1.5s both, glow 4s ease-in-out infinite;
+    animation: fadeIn 2s ease-out 1.5s both;
     text-shadow: 0 0 20px rgba(255, 182, 193, 0.4);
 }
 
@@ -311,10 +329,9 @@ body {
 }
 
 .flight-countdown {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 1.5rem 2rem;
-    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.3s ease;
     min-width: 280px;
@@ -377,6 +394,7 @@ body {
     background-clip: text;
     text-shadow: 0 2px 15px rgba(255, 182, 193, 0.4);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
 .mini-label {
@@ -481,6 +499,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    will-change: transform;
 }
 
 .label {
